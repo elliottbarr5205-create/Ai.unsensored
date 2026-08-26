@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android APK (No Gradlew)
 
 on:
   push:
@@ -19,6 +19,12 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+
+    - name: Install Gradle
+      uses: gradle/actions/setup-gradle@v3
+
+    - name: Generate Gradle Wrapper
+      run: gradle wrapper
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
